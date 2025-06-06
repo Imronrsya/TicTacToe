@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggleBtn">🌙</button>
+    
+    <div class="container">
+        <div class="screen active" id="homeScreen">
+            <div class="home-content">
+                <h1>Tic Tac Toe</h1>
+                <p class="subtitle">Choose your game mode</p>                <div class="mode-selection">
+                    <button class="button primary" id="btnPvp">Player vs Player (Local)</button>
+                    <button class="button secondary" id="btnPvpOnline">Player vs Player (Online)</button>
+                    <button class="button secondary" id="btnPvc">Player vs Computer</button>
+                </div>
+            </div>        </div>
+
+        <!-- Online Room Selection Screen -->
+        <div class="screen" id="onlineRoomScreen">
+            <div class="form-content">
+                <h2>Online Game</h2>
+                <p class="subtitle">Create or join a room to play online</p>
+                <div class="online-options">
+                    <div class="option-card">
+                        <h3>Create Room</h3>
+                        <p>Start a new game and invite a friend</p>
+                        <div class="input-group">
+                            <label for="hostPlayerName">Your Name</label>
+                            <input type="text" id="hostPlayerName" placeholder="Enter your name" maxlength="15">
+                        </div>
+                        <button class="button primary" id="btnCreateRoom">Create Room</button>
+                    </div>
+                    <div class="option-divider">OR</div>
+                    <div class="option-card">
+                        <h3>Join Room</h3>
+                        <p>Enter a room code to join a game</p>
+                        <div class="input-group">
+                            <label for="guestPlayerName">Your Name</label>
+                            <input type="text" id="guestPlayerName" placeholder="Enter your name" maxlength="15">
+                        </div>
+                        <div class="input-group">
+                            <label for="roomCode">Room Code</label>
+                            <input type="text" id="roomCode" placeholder="Enter room code" maxlength="6" style="text-transform: uppercase;">
+                        </div>
+                        <button class="button primary" id="btnJoinRoom">Join Room</button>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="button outline" id="btnBackFromOnlineRoom">Back</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Waiting Room Screen -->
+        <div class="screen" id="waitingRoomScreen">
+            <div class="form-content">
+                <h2>Waiting Room</h2>
+                <div class="room-info">
+                    <div class="room-code-display">
+                        <span>Room Code:</span>
+                        <span class="room-code" id="currentRoomCode">------</span>
+                        <button class="button outline small" id="btnCopyRoomCode">Copy</button>
+                    </div>
+                    <div class="players-list">
+                        <h3>Players:</h3>
+                        <div id="playersList"></div>
+                    </div>
+                    <div class="connection-status">
+                        <span id="connectionStatus">Connected</span>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="button primary" id="btnReady">Ready to Play</button>
+                    <button class="button outline" id="btnLeaveRoom">Leave Room</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen" id="playerNamesScreen">
+            <div class="form-content">
+                <h2>Enter Player Names</h2>
+                <div class="input-group">
+                    <label for="player1">Player 1 (X)</label>
+                    <input type="text" id="player1" placeholder="Enter name" maxlength="15">
+                </div>
+                <div class="input-group">
+                    <label for="player2">Player 2 (O)</label>
+                    <input type="text" id="player2" placeholder="Enter name" maxlength="15">
+                </div>
+                <div class="button-group">
+                    <button class="button primary" id="btnStartPvpGame">Start Game</button>
+                    <button class="button outline" id="btnBackFromPlayerNames">Back</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen" id="difficultyScreen">
+            <div class="difficulty-content">
+                <h2>Select Difficulty</h2>
+                <p class="difficulty-desc">Choose your challenge level</p>
+                <div class="difficulty-selection">
+                    <button class="difficulty-button" data-difficulty="easy">
+                        <span class="diff-title">Easy</span>
+                        <span class="diff-desc">Relaxed gameplay</span>
+                    </button>
+                    <button class="difficulty-button active" data-difficulty="medium">
+                        <span class="diff-title">Medium</span>
+                        <span class="diff-desc">Balanced challenge</span>
+                    </button>
+                    <button class="difficulty-button" data-difficulty="hard">
+                        <span class="diff-title">Hard</span>
+                        <span class="diff-desc">Expert level</span>
+                    </button>
+                </div>
+                <div class="button-group">
+                    <button class="button primary" id="btnStartGameFromDifficulty">Start Game</button>
+                    <button class="button outline" id="btnBackFromDifficulty">Back</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen" id="gameScreen">
+            <div class="game-header">
+                <div class="game-info">
+                    <h3 id="gameStatus">Player X's Turn</h3>
+                    <p id="gameMode"></p>
+                </div>
+            </div>
+            <div class="game-board" id="gameBoard">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+            <div class="button-group">
+                <button class="button primary" id="btnResetGame">Play Again</button>
+                <button class="button outline" id="btnMainMenuFromGame">Main Menu</button>
+            </div>
+        </div>
+    </div>    <!-- For real server version -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="online-demo.js"></script> -->
+    <script src="script.js"></script>
+</body>
+</html>
