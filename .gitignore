@@ -42,3 +42,16 @@ coverage/
 
 # Demo files (tidak diperlukan untuk production)
 online-demo.js
+
+# Duplicate documentation files (hanya simpan README.md)
+DEPLOY-RAILWAY.md
+GITHUB-AUTH-GUIDE.md
+IMPLEMENTATION-SUMMARY.md
+TESTING-GUIDE.md
+github-setup-commands.md
+LICENSE
+.env.example
+
+# Duplicate frontend files (hanya di public/ folder)
+/index.html
+/script.js
